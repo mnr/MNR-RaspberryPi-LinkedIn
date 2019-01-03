@@ -9,7 +9,7 @@ HCSR604_TRIG = 12
 HCSR604_ECHO = 18
 
 GPIO.setup(HCSR604_TRIG, GPIO.OUT)
-GPIO.setup(HCSR604_ECHO, GPIO.IN)
+GPIO.setup(HCSR604_ECHO, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 
 try:
     while True:
@@ -20,16 +20,18 @@ try:
         
         # start a timer
         while GPIO.input(HCSR604_ECHO) == 0:
-            timerStart = time.time()
+            whenPulseSent = time.time()
             
         # time the echo
         while GPIO.input(HCSR604_ECHO) == 1:
-            timerStop = time.time()
+            whenPulseReturn = time.time()
             
-        echoDuration = timerStop - timerStart
+        # timer
+        echoDuration = (whenPulseReturn - whenPulseSent) / 2
+        # divide by two because pulse covers twice the distance - out and back
+        
         speedOfSound = 34300 #centimeters per second
-        thereAndBack = 2 # the pulse has to travel out, then back
-        howFar = (echoDuration * speedOfSound) / thereAndBack
+        howFar = echoDuration * speedOfSound
         
         print("Distance: %.1f centimeters" % howFar)
         
