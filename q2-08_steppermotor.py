@@ -49,8 +49,12 @@ def setStep(w1, w2, w3, w4):
   GPIO.output(L293D_4A, w4)
 
 while True:
-  delay = raw_input("Delay between steps (milliseconds)?")
-  steps = raw_input("How many steps forward? ")
+  # delay = raw_input("Delay between steps (milliseconds)?")
+  # steps = raw_input("How many steps forward? ")
+  delay = 1
+  steps = 100
   forward(int(delay) / 1000.0, int(steps))
-  steps = raw_input("How many steps backwards? ")
+  # steps = raw_input("How many steps backwards? ")
+  steps = 100
   backwards(int(delay) / 1000.0, int(steps))
+  print("one cycle")
