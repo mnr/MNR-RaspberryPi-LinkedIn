@@ -1,4 +1,5 @@
 # sample code for LinkedIn Learning q2-08 Stepper Motor
+# assumes L293D driver and 28BYJ-48 motor
 
 import RPi.GPIO as GPIO
 import time
@@ -19,31 +20,24 @@ GPIO.setup(pin_list, GPIO.OUT)
 GPIO.setup(L293D_enable, GPIO.OUT)
 GPIO.output(L293D_enable, 1)
 
-# The four steps to turning the motor. 1 means to turn on the coil
-coil_seq = [(1,0,1,0),(0,1,1,0),(0,1,0,1),(1,0,0,1)]
+# The steps to turning the motor. "1" turns the coil on
+# either sequence works
+# turn_clockwise = [(1,0,1,0),(0,1,1,0),(0,1,0,1),(1,0,0,1)]
+turn_clockwise = [(0,1,0,0), (0,1,0,1), (0,0,0,1), (1,0,0,1), (1,0,0,0), (1,0,1,0), (0,0,1,0), (0,1,1,0)]
+turn_counterCW = turn_clockwise[::-1] # reverse the order of the list
 
-def forward(delay, steps):
-    print("forward")
+def turnTheMotor(delay, steps, coilSequence):
     for i in range(0, steps):
-        for coil_onoff in coil_seq:
-            w1,w2,w3,w4 = coil_onoff
-            GPIO.output(pin_list, (w1, w2, w3, w4))
+        for coil_onoff in coilSequence:
+            GPIO.output(pin_list, coil_onoff)
             time.sleep(delay)
 
-def backwards(delay, steps):
-    print("backwards")
-    for i in range(0, steps):
-        for coil_onoff in reversed(coil_seq):
-            w1,w2,w3,w4 = coil_onoff
-            GPIO.output(pin_list, (w1, w2, w3, w4))
-            time.sleep(delay)
-
-delay = 5
-steps = 100
+delay = .001 # .001 is fast. .01 is slow. .0001 is too fast to work
+steps = 100 # 512 is a full rotation. 10 just jitters
 
 while True:
-  forward(int(delay) / 1000.0,steps)
-  backwards(int(delay) / 1000.0, int(steps))
+  turnTheMotor(delay, steps, turn_clockwise)
+  turnTheMotor(delay, steps, turn_counterCW)
   print("one cycle")
   
 GPIO.cleanup()
