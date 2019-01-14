@@ -1,4 +1,4 @@
-# Example file for LinkedIn Learning Q2-09 Control high voltage
+# Example file for LinkedIn Learning Q2-11 Control high voltage
 # uses SSR-40 DA
 
 import gpiozero
