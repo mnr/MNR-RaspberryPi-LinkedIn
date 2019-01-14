@@ -1,4 +1,4 @@
-# Example file for LinkedIn Learning Q2-11 analog to digital
+# Example file for LinkedIn Learning Q2-12 analog to digital
 # uses MCP3008
 
 import gpiozero
