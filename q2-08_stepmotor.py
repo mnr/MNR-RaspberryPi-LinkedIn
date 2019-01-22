@@ -35,7 +35,7 @@ def turnTheMotor(delay, steps, coilSequence):
 delay = .001 # .001 is fast. .01 is slow. .0001 is too fast to work
 steps = 100 # 512 is a full rotation. 10 just jitters
 
-while True:
+for theCycle in range(1,10):
   turnTheMotor(delay, steps, turn_clockwise)
   turnTheMotor(delay, steps, turn_counterCW)
   print("one cycle")
