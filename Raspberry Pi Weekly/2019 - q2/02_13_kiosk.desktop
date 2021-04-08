@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=kiosk
+Type=Application
+Exec=soffice --show Desktop/Exercise\ Files/02_13_kiosk_slideshow.odp
+Name[en_US]=02_13_kiosk.desktop

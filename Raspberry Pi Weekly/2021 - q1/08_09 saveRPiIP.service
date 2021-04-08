@@ -1,0 +1,13 @@
+[Unit]
+Description=Save IP address
+Documentation=https://niemannross.com/link/saverpiip
+After=network-online.target
+
+
+[Service]
+ExecStart=/bin/sh -c "ifconfig > /boot/myIPAddress.txt"
+
+
+[Install]
+WantedBy=network-online.target
+

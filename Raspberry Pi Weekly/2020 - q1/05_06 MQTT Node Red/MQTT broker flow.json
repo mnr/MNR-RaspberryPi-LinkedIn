@@ -1,0 +1,1 @@
+[{"id":"50ad36c3.de40f8","type":"mosca in","z":"12487d92.5fef12","mqtt_port":"1883","mqtt_ws_port":8080,"name":"","username":"","password":"","dburl":"","x":178,"y":176,"wires":[["7117d68f.9a3248"]]}]

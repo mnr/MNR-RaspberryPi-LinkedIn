@@ -1,0 +1,6 @@
+<head>
+  <meta HTTP-EQUIV=CONTENT-TYPE CONTENT="text/html; charset=utf-8">
+  <title>Gpio Status</title>
+</head>
+<body>
+<pre> 
